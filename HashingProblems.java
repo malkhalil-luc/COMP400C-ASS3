@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Mahran Alkhalil / COMP 400C MWF 11:30-12:20 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -11,9 +11,9 @@
  */
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ArrayList;
-// import java.util.HashSet;
-// import java.util.Set;
+import java.util.Set;
 
 class HashingProblems {
 
@@ -40,8 +40,18 @@ class HashingProblems {
          * returning 0.0 is NOT correct, as that is not the average value. Whereas
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
+        Set<Integer> keysList = map.keySet();
+        double sum=0.0;
+        double count=0.0;
 
-         return 0.0 / 0.0;
+
+         for( int arrVal : array){
+            if (keysList.contains(arrVal)){
+                sum+=(double) map.get(arrVal);
+                count++;
+            }            
+         }
+         return sum / count;
   }
 
 
@@ -55,14 +65,18 @@ class HashingProblems {
   public ArrayList<String> odd(HashMap<Integer, String> map) {
     
       ArrayList<String> result = new ArrayList<>();
+        
 
       /*
        * ADD YOUR CODE HERE
        *
        * Hint: Consider iterating over the HashMap using the keySet method.
        */
-
-
+      for (Integer k : map.keySet()){
+            if(k%2 !=0 ){ // was checking for even!!!! 
+                result.add(map.get(k));
+            }
+        }
       return result;
   }
 
@@ -110,7 +124,26 @@ class HashingProblems {
        * ADD YOUR CODE HERE
        */
 
-      return -1;
+      // ref: https://www.geeksforgeeks.org/dsa/count-pairs-difference-equal-k/
+
+      int kAppear = 0;
+
+       //Set elemSet = new HashSet<>(Arrays.asList(numbers)); OR
+
+       Set <Integer> elemSet = new HashSet<>();
+
+
+       for (Integer num : numbers ){
+        elemSet.add(num);
+       } // O(n)
+
+       for( int num : numbers){
+        if (elemSet.contains(Math.abs(num+ k))){ // if arr. element + k = num that is in the array  
+            kAppear +=1;
+        }
+       } // O(n)
+    
+      return kAppear;
   }
 
 } /* end class HashingProblems */
