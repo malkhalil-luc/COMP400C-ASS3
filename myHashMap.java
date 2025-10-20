@@ -1,6 +1,6 @@
 
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Mahran Alkhalil / COMP 400C MWF 11:30-12:20 ***
  *
  * This hashMap object represents an over simplification of Java's implementation of HashMap within
  * Java's Collection Framework Library. You are to complete the following methods:
@@ -232,7 +232,31 @@ class myHashMap<K,V> {
          * return value is returned the invoking function based on the remove outcome.
          */
 
-        return null;
+        //return null;
+        int index = getBucketIndex(key);
+        V val;
+
+        HashNode<K, V> head = bucket.get(index);
+        
+
+        if (head.key.equals(key)){ // case: target node is the head node, 
+             val = head.value;
+            bucket.set(index, head.next); // if the next is null or has next
+            size -=1;// decrease the size
+            return val; //return the removed value val
+        }
+        HashNode<K, V> prev= null;
+        while (head != null) {
+            if (head.key.equals(key)) {
+                 val = head.value; // retain the value to be returned
+                prev.next = head.next; // link previous and next nodes to unlink the node of K
+                size -=1; // decrease the size
+                return val; //return the removed value val
+            }
+            prev = head;
+            head = head.next;
+        }
+        return null; // key not found
     }
 
 
