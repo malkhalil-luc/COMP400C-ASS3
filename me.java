@@ -7,8 +7,7 @@ public class me {
         HashMap<k,v>map = new HashMap<>();
         HashSet<k> set = new HashSet<>();
 
-        ma
-
+// 
     }
     
 }
