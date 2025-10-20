@@ -91,6 +91,10 @@ class HashNode<K,V> {
     V value;
     HashNode<K, V> next;
     public HashNode() {
+        this.key=null;
+        this.value=null;
+    }
+    public HashNode(K key,V value) {
         this.key=key;
         this.value=value;
     }
@@ -154,7 +158,7 @@ class myHashMap<K,V> {
 
 
     /**
-     * method getBucketindex()
+     * method getBucketIndex()
      *
      * Performs two parts.
      *   1) First invokes a very simple hash code generator which generates a 32-bit
@@ -395,7 +399,7 @@ class myHashMap<K,V> {
      * associates it with the given value and returns null, else returns the current value.
      *
      * @param: key   - The key to check if exists in the hashmap
-     * @parem: value - The value to place in as a <k, v> pair if
+     * @param: value - The value to place in as a <k, v> pair if
      *                 key does not exist
      *
      * @return: V - returns the existing value if the key is 
@@ -404,7 +408,7 @@ class myHashMap<K,V> {
 
     public V putIfAbsent(K key, V value) {
         if( key == null || value == null ) return null;
-        
+
         V originalValue = get(key);
 
         if (originalValue == null ) {
@@ -480,7 +484,7 @@ class myHashMap<K,V> {
          * ADD YOUR CODE HERE
          *
          * This method should apply the precondition (aka, the Key already exists with the
-         * value 'oldval', and is so, it SHOULD call replace(K, V) for code reuse.
+         * value 'oldVal', and is so, it SHOULD call replace(K, V) for code reuse.
          */
 
          if (key==null || oldVal == null || newVal == null) return false;
